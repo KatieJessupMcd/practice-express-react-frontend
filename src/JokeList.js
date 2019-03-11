@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+// Child component
+
 class JokeList extends Component {
   render() {
     const { jokes } = this.props;

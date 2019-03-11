@@ -1,9 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+// test with npm test
+import React from "react";
+import { shallow } from "enzyme";
+import toJson from "enzyme-to-json";
+import JokeList from "./JokeList";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+// smoke test
+it("renders without crashing", function() {
+  shallow(<JokeList />);
+});
+
+// snapshot test
+it("matches snapshot", function() {
+  let wrapper = shallow(<JokeList />);
+  let serialized = toJson(wrapper);
+  expect(serialized).toMatchSnapshot();
 });

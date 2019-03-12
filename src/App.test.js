@@ -2,16 +2,16 @@
 import React from "react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import JokeList from "./JokeList";
+import PokemonList from "./PokemonList";
 
 // smoke test
 it("renders without crashing", function() {
-  shallow(<JokeList />);
+  shallow(<PokemonList />);
 });
 
 // snapshot test
 it("matches snapshot", function() {
-  let wrapper = shallow(<JokeList />);
+  let wrapper = shallow(<PokemonList />);
   let serialized = toJson(wrapper);
   expect(serialized).toMatchSnapshot();
 });

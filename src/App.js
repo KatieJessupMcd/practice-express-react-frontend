@@ -1,44 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
 // IMPORT components and API call file
-// import JokesApi from "./JokesApi";
-// import JokeList from "./JokeList";
+import PokemonApi from "./PokemonApi";
+ import PokemonList from "./PokemonList";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // set state
+      pokemonList : [] 
     }
     // bind functions 
-    // this.getRandomJokes = this.getRandomJokes.bind(this);
+    this.getPokemonList = this.getPokemonList.bind(this);
   }
 
   // componentDidMount - make any calls you need
   async componentDidMount() {
-    await this.getRandomJokes();
+    await this.getPokemonList();
   }
 
-  // async getRandomJokes() {
-  //   const jokeRequests = [
-  //     JokesApi.getTopJokes(),
-  //     JokesApi.getWorstJokes(),
-  //     JokesApi.getRandomJokes()
-  //   ];
-  //   const [ topJokes, bottomJokes, randomJokes ] = await Promise.all(jokeRequests);
-  //   this.setState({ topJokes, bottomJokes, randomJokes });
-  // }
+  async getPokemonList(){
+    const pokemonRequests = [PokemonApi.getPokemon()]
+    const pokemonList = await Promise.all(pokemonRequests);
+    this.setState( { pokemonList } ) 
+  }
+
 
   render() {
     // DECONSTRUCT whatever you need from state
-    // const { topJokes, bottomJokes, randomJokes } = this.state;
+    const { pokemonList } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          
-        </header>
         <div>
-          {/* children components here */}
+          <PokemonList pokemonList={pokemonList}/>
         </div>
       </div>
     );
